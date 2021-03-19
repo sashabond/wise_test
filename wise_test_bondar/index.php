@@ -46,9 +46,10 @@
     <!---------------------------------------------------------------------Блок виводу активностей--------------------->
         <div class="col-md-8">
             <?php
-                $activities = mysqli_query($link, "SELECT * FROM `activ_info`");
-                $activities = mysqli_fetch_all($activities);
 
+                $activities = mysqli_query($link, "SELECT * FROM `activ_info` ORDER BY `id` DESC LIMIT 5");
+                $activities = mysqli_fetch_all($activities);
+//
                     foreach ($activities as $act_info){
                         $seconds = strtotime($act_info[4])-strtotime($act_info[3]);
                         $minutes = floor( $seconds/ 60); // кількість хвилини
