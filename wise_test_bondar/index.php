@@ -21,7 +21,7 @@
     <!-------------------------------------------------------------------Блок додавання активності------------------->
         <div class="row">
             <div class="col-md-12 add_block">
-                <form id="save_info" action="admin/add_activity.php" method="post">
+                <form id="save_info" action="admin/add_activity.php" method="post"> <!-- Перехід на add_activity.php -->
                     <table>
                         <tr>
                             <td><label> Add new activity:</label></td>
@@ -55,9 +55,9 @@
                         $hours = floor($minutes / 60); // кількість повних годин
                         $minutes = $minutes - ($hours * 60);  // кількість хвилин в залишку
 
-                        if($hours>0) $hours = $hours.' h'; //якщо час<60хв - години не виводиться
+                        if($hours>0) $hours = $hours.' h'; //якщо час<60хв - виводяться тільки хвилини
                         else $hours='' ;
-                        if(!$hours == 0) $division_hours = $hours;
+                        if(!$hours == 0) $division_hours = $hours; 
                         else $division_hours = 1;
                         ?>
                         <div class="list_block">
@@ -65,7 +65,7 @@
                               <tr>
                                 <td id="asd"><?= $act_info[1] ?></td>
                                 <td><?= $act_info[5] ?> </td>
-                                <td><?= round($act_info[2]/1000, 1) ?> km</td>
+                                <td><?= round($act_info[2]/1000, 1) ?> km</td>  <!-- Заокруглення кілометрів-->
                                 <td><?= $hours.' '.$minutes ?> min</td>
                                 <td><?= round($act_info[2]/1000/$division_hours ,1) ?> km/h</td>
                               </tr>
@@ -84,8 +84,8 @@
                         $max_ride_score = mysqli_fetch_all($max_ride_score);
                         $max_ride = 0;
 
-                        foreach ($max_ride_score as $max_info){
-                            if($max_info[2] > $max_ride) {$max_ride=$max_info[2];}
+                        foreach ($max_ride_score as $max_info){  
+                            if($max_info[2] > $max_ride) {$max_ride=$max_info[2];} //Перевірка max елемента
                         }
                             foreach ($max_ride_score as $max_info){
                                 if($max_info[2] == $max_ride) {
@@ -117,7 +117,7 @@
                             $max_run = 0;
 
                             foreach ($max_run_score as $max_info){
-                                if($max_info[2] > $max_run) {$max_run=$max_info[2];}
+                                if($max_info[2] > $max_run) {$max_run=$max_info[2];}  //Перевірка max елемента
                             }
                                 foreach ($max_run_score as $max_info){
                                     if($max_info[2] == $max_run) {
